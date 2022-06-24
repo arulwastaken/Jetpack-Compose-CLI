@@ -1,0 +1,16 @@
+package {{applicationId}}.data.remote
+
+import retrofit2.http.GET
+import retrofit2.http.POST
+import {{applicationId}}.data.remote.dto.SampleDto
+
+
+interface {{pascalCase appName}}Api {
+
+    @POST("/sample")
+    suspend fun sendSample(data: SampleDto): User
+
+
+    @GET("/sample")
+    suspend fun getSample() : SampleDto
+}

@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "target": "es6",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "outDir": "dist"
+    },
+    "ts-node": {
+      // ts-node options here
+      "transpileOnly": true,
+      "compiler": "ttypescript",
+      // ts-node-specific overrides for compilerOptions
+      // any compilerOptions specified here will override the values specified above, *only* when running in ts-node
+      "compilerOptions": {
+      }
+    },
+    "lib": ["es2015"]
+  }

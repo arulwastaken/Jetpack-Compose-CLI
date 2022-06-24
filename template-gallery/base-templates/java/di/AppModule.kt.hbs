@@ -1,0 +1,77 @@
+package {{applicationId}}.di
+
+import android.content.Context
+import androidx.room.Room
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
+import {{applicationId}}.BuildConfig
+import {{applicationId}}.utility.Constants
+{{#addDatabase}}
+import {{applicationId}}.db.{{pascalCase appName}}Db
+{{/addDatabase}}
+{{#addNetworking}}
+import {{applicationId}}.data.remote.{{pascalCase appName}}Api
+{{/addNetworking}}
+
+
+@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
+
+    // sample di implementation
+    @Provides
+    fun provideSampleText(): String {
+        return "Sample text"
+    }
+
+    {{#addRetrofit}}
+    private val interceptor = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+
+    private val okHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
+    
+
+    @Provides
+    @Singleton
+    fun provide{{pascalCase appName}}Api(): {{pascalCase appName}}Api = Retrofit.Builder()
+        .baseUrl(BuildConfig.BASE_URL)
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+        .create({{pascalCase appName}}Api::class.java)
+
+    {{/addRetrofit}}
+    {{#addRoom}}
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext appContext: Context): {{pascalCase appName}}Db {
+        return Room.databaseBuilder(
+            appContext,
+            {{pascalCase appName}}Db::class.java,
+            "{{pascalCase appName}}DB"
+        ).build()
+    }
+
+    {{/addRoom}}
+    {{#addRealm}}
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext appContext: Context): {{pascalCase appName}}Db {
+        return Room.databaseBuilder(
+            appContext,
+            {{pascalCase appName}}Db::class.java,
+            "{{pascalCase appName}}DB"
+        ).build()
+    }
+    {{/addRealm}}
+
+}

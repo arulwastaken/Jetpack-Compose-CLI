@@ -1,0 +1,44 @@
+package {{applicationId}}.db
+
+import androidx.room.Database
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
+import {{applicationId}}.db.dao.SampleTbDao
+import {{applicationId}}.db.model.*
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
+
+@Database(
+    entities = [SampleTb::class],
+    version = 1
+)
+@TypeConverters(DataConverter::class)
+abstract class {{pascalCase appName}}Db : RoomDatabase() {
+    abstract fun sampleDao(): SampleTbDao
+}
+
+class DataConverter {
+    @TypeConverter // note this annotation
+    fun fromSampleTbList(optionValues: List<SampleTb?>?): String? {
+        if (optionValues == null) {
+            return null
+        }
+        val gson = Gson()
+        val type = object :
+            TypeToken<List<SampleTb?>?>() {}.type
+        return gson.toJson(optionValues, type)
+    }
+
+    @TypeConverter // note this annotation
+    fun toSampleTbList(optionValuesString: String?): List<SampleTb>? {
+        if (optionValuesString == null) {
+            return null
+        }
+        val gson = Gson()
+        val type = object :
+            TypeToken<List<SampleTb?>?>() {}.type
+        return gson.fromJson(optionValuesString, type)
+    }
+}
