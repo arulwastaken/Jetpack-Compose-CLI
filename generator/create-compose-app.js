@@ -1,5 +1,5 @@
 import { CCLI_PROMPT_TYPE } from "../util/prompts.js"
-import { constants } from '../util/constants.js'
+import { constants, templatePath } from '../util/constants.js'
 
 let databaseChoices = [
     "Realm", "Room", "Sqlite", "None"
@@ -11,6 +11,12 @@ let networkingChoices = [
 export const creatComposeApp =  {
     description: 'Create anadroid application using compose architecture',
     prompts: [
+        {
+            type: CCLI_PROMPT_TYPE.fileDir,
+            name: "selectedBaseVersion",
+            root: constants.basePath,
+            message: 'Select version'
+        },
         {
             type: 'input',
             name: 'appName',
@@ -90,6 +96,9 @@ export const creatComposeApp =  {
         console.log("Processing", data)
         
         let actions = [];
+        let path = data.selectedBaseVersion.split("/")
+        let tempalteVersion = path[path.length - 1]
+        
         let packageLoc = data.packageId.split(".").join("/")
         let projectPath = `${constants.outputPath}${data.appName}`
         let projectJavaPath = `${projectPath}/${constants.javaPath}${packageLoc}` 
@@ -101,12 +110,12 @@ export const creatComposeApp =  {
             { 
                 type: "addMany",
                 destination: `${projectPath}`,
-                base: `${constants.basePath}`,
-                templateFiles: `${constants.basePath}/**/*`
+                base: `${data.selectedBaseVersion}`,
+                templateFiles: `${data.selectedBaseVersion}/**/*`
             },
             { 
                 type: "addMany",
-                base: `${constants.setupPath}`,
+                base: `${constants.setupPath}/${tempalteVersion}`,
                 destination: `${projectJavaPath}`,
                 data: {
                     addDatabase,
@@ -117,7 +126,7 @@ export const creatComposeApp =  {
                     addRetrofit: data.networking == "Retrofit",
                     addVolley: data.networking == "Volley"
                 },
-                templateFiles: `${constants.setupPath}/**/*`
+                templateFiles: `${constants.setupPath}/${tempalteVersion}/**/*`
             }
         )
         if (data.addGoogleService) {
