@@ -1,6 +1,6 @@
 {
   "name": "jetpack-compose-cli",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -8,9 +8,18 @@
     "jetpack-compose-cli": "./source/cli.js"
   },
   "scripts": {
-    "plop": "plop",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "plop": "plop"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arulmani33/Jetpack-Compose-CLI.git"
+  },
+  "keywords": [
+    "Android",
+    "Jetpack compose",
+    "MVVM",
+    "MVI"
+  ],
   "author": "Arul",
   "license": "ISC",
   "dependencies": {
