@@ -10,6 +10,14 @@ import { creatLoginCompose } from './generator/create-login-compose.js';
 
 export default function (plop) {
 
+
+    plop.setWelcomeMessage(`Usage
+        $ jetpack-compose-cli <cmd>
+    
+    Examples
+	    $ jetpack-compose-cli create-compose-app
+	    $ jetpack-compose-cli create-login-module
+`)
     plop.setGenerator('create-compose-app', creatComposeApp);
     plop.setGenerator('create-compose-login', creatLoginCompose);
     

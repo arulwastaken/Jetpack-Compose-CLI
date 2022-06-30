@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 
 import meow from 'meow';
-import foo from './lib/index.js';
 
 const cli = meow(`
 	Usage
 	  $ jetpack-compose-cli <input>
 
 	Options
-	  --rainbow, -r  Include a rainbow
+	  --default creat default settings
 
 	Examples
 	  $ jetpack-compose-cli 
@@ -16,5 +15,14 @@ const cli = meow(`
       $ jetpack-compose-cli create-login-compose
 	  🌈 unicorns 🌈
 `, {
-	importMeta: import.meta
+	importMeta: import.meta,
+    flags: {
+		default: {
+			type: 'boolean',
+			default: true,
+			alias: 'r'
+		}
+    }
 });
+
+console.log("input",cli.input[0], cli.flags);
