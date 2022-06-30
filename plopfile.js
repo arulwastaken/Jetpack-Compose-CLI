@@ -11,7 +11,10 @@ import { creatLoginCompose } from './generator/create-login-compose.js';
 export default function (plop) {
 
 
-    plop.setWelcomeMessage(`Usage
+    plop.setWelcomeMessage(`
+    Jetpack Compose Cli
+    
+    Usage
         $ jetpack-compose-cli <cmd>
     
     Examples
@@ -20,21 +23,16 @@ export default function (plop) {
 `)
     plop.setGenerator('create-compose-app', creatComposeApp);
     plop.setGenerator('create-compose-login', creatLoginCompose);
-    
-    plop.setActionType('copyBase', function (answers, config, plop) {
-        copyDir.sync('base-templates', `${constants.outputPath}${answers.appName}`)
-        return 'success status message';
-    });
 
     plop.setActionType('copyAssets', function (answers, config, plop) {
         let src = answers[config.fileType]
-        var dest = `${constants.outputPath}${answers.appName}/`
+        let outputPath = config.outputPath
         switch(config.fileType) {
             case 'googleServiceAssest':
-                dest += "app/google-services.json"
+                outputPath += "/app/google-services.json"
                 break;
         } 
-        fs.copyFileSync(src, dest);
+        fs.copyFileSync(src, outputPath);
         return 'file moved';
     });
 

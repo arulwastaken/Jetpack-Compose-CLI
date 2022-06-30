@@ -1,28 +1,20 @@
 #!/usr/bin/env node
 
-import meow from 'meow';
+import path from "node:path";
+import minimist from "minimist";
+import { Plop, run } from "plop";
 
-const cli = meow(`
-	Usage
-	  $ jetpack-compose-cli <input>
+const args = process.argv.slice(2);
+const argv = minimist(args);
 
-	Options
-	  --default creat default settings
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
-	Examples
-	  $ jetpack-compose-cli 
-      $ jetpack-compose-cli create-compose-app
-      $ jetpack-compose-cli create-login-compose
-	  🌈 unicorns 🌈
-`, {
-	importMeta: import.meta,
-    flags: {
-		default: {
-			type: 'boolean',
-			default: true,
-			alias: 'r'
-		}
-    }
-});
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-console.log("input",cli.input[0], cli.flags);
+Plop.prepare({
+  cwd: process.cwd().replace("/cli", ""),
+  configPath: path.join(process.cwd().replace("/cli", ""), 'plopfile.js'),
+  preload: argv.preload || [],
+  completion: argv.completion
+}, env => Plop.execute(env, run));

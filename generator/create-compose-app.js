@@ -1,5 +1,7 @@
 import { CCLI_PROMPT_TYPE } from "../util/prompts.js"
 import { constants, templatePath } from '../util/constants.js'
+import os from 'os';
+import openExplorer from 'open-file-explorer';
 
 let databaseChoices = [
     "Realm", "Room", "Sqlite", "None"
@@ -100,7 +102,8 @@ export const creatComposeApp =  {
         let tempalteVersion = path[path.length - 1]
         
         let packageLoc = data.packageId.split(".").join("/")
-        let projectPath = `${constants.outputPath}${data.appName}`
+        let publicPath = os.homedir() + "/JC-Projects";
+        let projectPath = `${publicPath}/${data.appName}`
         let projectJavaPath = `${projectPath}/${constants.javaPath}${packageLoc}` 
         let addDatabase = data.database != "None"
         let addNetworking = data.networking != "None" 
@@ -111,12 +114,14 @@ export const creatComposeApp =  {
                 type: "addMany",
                 destination: `${projectPath}`,
                 base: `${data.selectedBaseVersion}`,
+                verbose: false,
                 templateFiles: `${data.selectedBaseVersion}/**/*`
             },
             { 
                 type: "addMany",
                 base: `${constants.setupPath}/${tempalteVersion}`,
                 destination: `${projectJavaPath}`,
+                verbose: false,
                 data: {
                     addDatabase,
                     addNetworking,
@@ -132,6 +137,7 @@ export const creatComposeApp =  {
         if (data.addGoogleService) {
             actions.push({
                 type: "copyAssets",
+                outputPath: projectPath,
                 fileType: "googleServiceAssest"
             })
         }
@@ -140,6 +146,7 @@ export const creatComposeApp =  {
             {
                 type: "add",
                 path: `${projectPath}/.ccli_config.json`,
+                verbose: false,
                 templateFile: constants.ccliConfigPath
             }
         )
@@ -149,6 +156,7 @@ export const creatComposeApp =  {
             actions.push({ 
                 type: "addMany",
                 base: dbLoc,
+                verbose: false,
                 destination: `${projectJavaPath}/db`,
                 templateFiles: `${dbLoc}/**/*`
             })
@@ -159,11 +167,14 @@ export const creatComposeApp =  {
             actions.push({ 
                 type: "addMany",
                 base: netLoc,
+                verbose: false,
                 destination: `${projectJavaPath}/data/remote`,
                 templateFiles: `${netLoc}/**/*`
             })
         }
-        
+        console.log("Project successfully created loc ", projectPath)
+        openExplorer(publicPath, err => { });
         return actions;
     }
+
 }
