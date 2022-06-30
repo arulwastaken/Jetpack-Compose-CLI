@@ -10,27 +10,23 @@ A Boilerplate code generator for creating Android project. Using fully Kotlin an
 - [MVI](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
 - [View Binding](https://developer.android.com/topic/libraries/view-binding)
 - [Hilt 2](https://github.com/google/dagger)
-- [Retrofit 2](https://github.com/square/retrofit)
-- [Glide](https://github.com/bumptech/glide)
+- [Retrofit](https://github.com/square/retrofit)
 
+### Architecture
+
+![Architecture](media/architecture.png "Architecture")
 
 ## TODO List:
 
-- [x] Offline First (using Room and paging lib)
-- [x] Add Example Usage of Fragment
-- [ ] Create Documentation Code Snippet
-- [ ] Add example for using Coroutines
+- [x] Android recommended compose architecture
+- [x] Add Example API
+- [ ] Create Sign/Signup Code Snippet
 - [ ] Create Unit Test
 
 
 ## How To Use
 
 Create your project directory
-
-```bash
-mkdir MyNewApp
-cd MyNewApp/
-```
 
 Install generator using NPM
 
