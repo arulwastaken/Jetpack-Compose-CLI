@@ -9,7 +9,7 @@ A Boilerplate code generator for creating Android project. Using fully Kotlin an
 - [Kotlin](https://kotlinlang.org/)
 - [MVI](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
 - [View Binding](https://developer.android.com/topic/libraries/view-binding)
-- [Hilt 2](https://github.com/google/dagger)
+- [Hilt](https://github.com/google/dagger)
 - [Retrofit](https://github.com/square/retrofit)
 
 ### Architecture
@@ -34,7 +34,7 @@ Install generator using NPM
 npm install -g jetpack-compose-cli
 ```
 
-Run Generator using Yeoman
+Run Generator
 
 ```bash
 jetpack-compose-cli create-compose-app
