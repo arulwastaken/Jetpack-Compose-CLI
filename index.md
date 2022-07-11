@@ -1,6 +1,6 @@
-# Jetpack Compose CLI
+# Hi, There 
 
-A Boilerplate code generator for creating Android project. Using fully Kotlin and MVI pattern that refer to Android Jetpack. Creating base and setup project is such a drag...!! So here we go cli tool kit for genarate android app.
+Jetpack compose cli is a Boilerplate code generator for creating Android project. Using fully Kotlin and MVI pattern that refer to Android Jetpack. Creating base and setup project is such a drag...!! So here we go cli tool kit for genarate android app.
 
 
 [![npm version](https://badge.fury.io/js/jetpack-compose-cli.svg)](https://badge.fury.io/js/jetpack-compose-cli)
