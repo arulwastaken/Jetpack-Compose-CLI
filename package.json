@@ -1,6 +1,6 @@
 {
   "name": "jetpack-compose-cli",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -12,8 +12,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arulmani33/Jetpack-Compose-CLI.git"
+    "url": "git+https://github.com/arulmani33/Jetpack-Compose-CLI.git",
+    "homepage": "https://arulmani33.github.io/Jetpack-Compose-CLI"
   },
+  "homepage": "https://arulmani33.github.io/Jetpack-Compose-CLI",
   "keywords": [
     "Android",
     "Jetpack compose",
