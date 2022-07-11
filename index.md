@@ -1,37 +1,51 @@
-## Welcome to GitHub Pages
+# Jetpack Compose CLI
 
-You can use the [editor on GitHub](https://github.com/arulmani33/Jetpack-Compose-CLI/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+A Boilerplate code generator for creating Android project. Using fully Kotlin and MVI pattern that refer to Android Jetpack. Creating base and setup project is such a drag...!! So here we go cli tool kit for genarate android app.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+[![npm version](https://badge.fury.io/js/jetpack-compose-cli.svg)](https://badge.fury.io/js/jetpack-compose-cli)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## What's Included:
 
-```markdown
-Syntax highlighted code block
+- [Kotlin](https://kotlinlang.org/)
+- [MVI](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)
+- [View Binding](https://developer.android.com/topic/libraries/view-binding)
+- [Hilt](https://github.com/google/dagger)
+- [Retrofit](https://github.com/square/retrofit)
 
-# Header 1
-## Header 2
-### Header 3
+### Architecture
 
-- Bulleted
-- List
+![Architecture](media/architecture.png "Architecture")
 
-1. Numbered
-2. List
+## TODO List:
 
-**Bold** and _Italic_ and `Code` text
+- [x] Android recommended compose architecture
+- [x] Add Example API
+- [ ] Create Sign/Signup Code Snippet
+- [ ] Create Unit Test
 
-[Link](url) and ![Image](src)
+
+## How To Use
+
+Create your project directory
+
+Install generator using NPM
+
+```bash
+npm install -g jetpack-compose-cli
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+Run Generator
 
-### Jekyll Themes
+```bash
+jetpack-compose-cli create-compose-app
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/arulmani33/Jetpack-Compose-CLI/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Open project using Android Studio, build, and done!
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## License
+
+Copyright (c) 2022 Arul Mani
+
+This software is published under MIT License. See [LICENSE.md](LICENSE.md) for more details.
