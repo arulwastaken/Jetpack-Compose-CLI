@@ -7,11 +7,13 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 {{#addNetworking}}
 import {{applicationId}}.BuildConfig
+{{/addNetworking}}
+{{#addRetrofit}}
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-{{/addNetworking}}
+{{/addRetrofit}}
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -24,7 +26,6 @@ object NetworkModule {
     }
 
     {{#addRetrofit}}
-
     private val interceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
@@ -35,11 +36,12 @@ object NetworkModule {
     fun provide{{pascalCase appName}}Api(): {{pascalCase appName}}Api {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create({{pascalCase appName}}Api::class.java)
 
     }
-
+    
     {{/addRetrofit}}
 }

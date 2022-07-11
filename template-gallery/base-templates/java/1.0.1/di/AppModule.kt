@@ -2,7 +2,7 @@ package {{applicationId}}.di
 
 import {{applicationId}}.data.repository.items.local.ItemsLocalSource
 import {{applicationId}}.data.repository.items.local.ItemsMemorySource
-import {{applicationId}}.data.repository.items.remote.{{pascalCase appName}}sApi
+import {{applicationId}}.data.repository.items.remote.{{pascalCase appName}}Api
 import {{applicationId}}.data.repository.items.remote.ItemsApiSource
 import {{applicationId}}.data.repository.items.remote.ItemsRemoteSource
 import dagger.Module

@@ -107,6 +107,21 @@ export const creatComposeApp =  {
         let projectJavaPath = `${projectPath}/${constants.javaPath}${packageLoc}` 
         let addDatabase = data.database != "None"
         let addNetworking = data.networking != "None" 
+        let addRealm = data.database == "Realm"
+        let addRoom = data.database == "Room"
+        let addSqlite = data.database == "Sqlite"
+        let addRetrofit = data.networking == "Retrofit"
+        let addVolley = data.networking == "Volley"
+
+        let configData = {
+            addDatabase,
+            addNetworking,
+            addRealm,
+            addRoom,
+            addSqlite,
+            addRetrofit,
+            addVolley
+        }
 
         
         actions.push(
@@ -115,6 +130,7 @@ export const creatComposeApp =  {
                 destination: `${projectPath}`,
                 base: `${data.selectedBaseVersion}`,
                 verbose: false,
+                data: configData,
                 templateFiles: `${data.selectedBaseVersion}/**/*`
             },
             { 
@@ -122,15 +138,7 @@ export const creatComposeApp =  {
                 base: `${constants.setupPath}/${tempalteVersion}`,
                 destination: `${projectJavaPath}`,
                 verbose: false,
-                data: {
-                    addDatabase,
-                    addNetworking,
-                    addRealm: data.database == "Realm",
-                    addRoom: data.database == "Room",
-                    addSqlite: data.database == "Sqlite",
-                    addRetrofit: data.networking == "Retrofit",
-                    addVolley: data.networking == "Volley"
-                },
+                data: configData,
                 templateFiles: `${constants.setupPath}/${tempalteVersion}/**/*`
             }
         )
@@ -163,14 +171,14 @@ export const creatComposeApp =  {
         }
 
         if (addNetworking) {
-            let netLoc = `${constants.networkingTemplatePath}/${data.networking.toLowerCase()}`
-            actions.push({ 
-                type: "addMany",
-                base: netLoc,
-                verbose: false,
-                destination: `${projectJavaPath}/data/remote`,
-                templateFiles: `${netLoc}/**/*`
-            })
+            // let netLoc = `${constants.networkingTemplatePath}/${data.networking.toLowerCase()}`
+            // actions.push({ 
+            //     type: "addMany",
+            //     base: netLoc,
+            //     verbose: false,
+            //     destination: `${projectJavaPath}/data/remote`,
+            //     templateFiles: `${netLoc}/**/*`
+            // })
         }
         console.log("Project successfully created loc ", projectPath)
         openExplorer(publicPath, err => { });
