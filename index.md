@@ -15,7 +15,7 @@ Jetpack compose cli is a Boilerplate code generator for creating Android project
 
 ### Architecture
 
-![Architecture](media/architecture.png "Architecture")
+![Architecture](architecture.png "Architecture")
 
 ## TODO List:
 
